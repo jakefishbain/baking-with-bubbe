@@ -13,19 +13,19 @@ export default function Header({ showBackButton, onBack, rightElement }: HeaderP
     <header className="sticky top-0 z-40 w-full">
       {/* Main header - bold blue */}
       <div className="relative overflow-hidden bg-bubbe-blue">
-        <div className="flex items-center justify-between px-4 py-3 md:px-8 md:py-4">
+        <div className="flex items-center justify-between px-3 py-2 md:px-6 md:py-2.5">
           {/* Left side - Back button or spacer */}
-          <div className="w-10 md:w-12">
+          <div className="w-8 md:w-10">
             {showBackButton && (
               <button
                 onClick={onBack}
-                className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-white/20 text-white transition-all hover:bg-white/30 active:scale-95"
+                className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-white/20 text-white transition-all hover:bg-white/30 active:scale-95"
                 aria-label="Go back"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -40,23 +40,23 @@ export default function Header({ showBackButton, onBack, rightElement }: HeaderP
           </div>
 
           {/* Center - Logo and Title */}
-          <div className="flex items-center gap-3">
-            <BubbeLogo size={50} className="md:w-16 md:h-16" />
+          <div className="flex items-center gap-2">
+            <BubbeLogo size={40} className="md:w-12 md:h-12" />
             <div className="flex flex-col">
-              <h1 className="graffiti-text text-2xl md:text-4xl text-white drop-shadow-md">
+              <h1 className="graffiti-text text-xl md:text-2xl text-white drop-shadow-md">
                 Baking With Bubbe
               </h1>
             </div>
           </div>
 
           {/* Right side - Custom element or spacer */}
-          <div className="w-10 md:w-12 flex justify-end">
+          <div className="w-8 md:w-10 flex justify-end">
             {rightElement}
           </div>
         </div>
 
         {/* Yellow accent bar */}
-        <div className="h-2 bg-bubbe-yellow" />
+        <div className="h-1 bg-bubbe-yellow" />
       </div>
     </header>
   );

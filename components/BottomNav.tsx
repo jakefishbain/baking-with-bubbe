@@ -41,7 +41,7 @@ export default function BottomNav() {
       className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-bubbe-blue"
       aria-label="Main navigation"
     >
-      <div className="mx-auto flex max-w-desktop items-center justify-around py-2 md:py-3">
+      <div className="mx-auto flex max-w-desktop items-center justify-around py-1 md:py-1.5">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -50,24 +50,24 @@ export default function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center gap-1 px-6 md:px-8 py-2 transition-all active:scale-95 ${
+              className={`flex flex-col items-center gap-0.5 px-4 md:px-6 py-1 transition-all active:scale-95 ${
                 isActive ? item.activeColor : 'text-bubbe-gray'
               }`}
               aria-current={isActive ? 'page' : undefined}
             >
               <div
-                className={`p-2 rounded-xl transition-all ${
+                className={`p-1.5 rounded-xl transition-all ${
                   isActive ? item.activeBg : ''
                 }`}
               >
                 <Icon
-                  className={`h-6 w-6 md:h-7 md:w-7 transition-transform ${
+                  className={`h-5 w-5 md:h-6 md:w-6 transition-transform ${
                     isActive ? 'scale-110' : ''
                   }`}
                   fill={isActive && item.icon === Heart ? 'currentColor' : 'none'}
                 />
               </div>
-              <span className="text-xs md:text-sm font-bold font-body">{item.label}</span>
+              <span className="text-[10px] md:text-xs font-bold font-body">{item.label}</span>
             </Link>
           );
         })}

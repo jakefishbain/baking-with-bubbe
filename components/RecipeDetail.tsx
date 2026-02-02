@@ -186,8 +186,8 @@ export default function RecipeDetail({
             </p>
           </section>
 
-          {/* Bottom padding for safe area */}
-          <div className="h-8" />
+          {/* Bottom padding to clear bottom nav */}
+          <div className="h-24" />
         </div>
       </div>
     </div>
