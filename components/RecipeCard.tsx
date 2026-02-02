@@ -11,6 +11,16 @@ interface RecipeCardProps {
   animationDelay?: number;
 }
 
+// Rotating accent colors - primary focused
+const accentColors = [
+  { border: 'border-bubbe-blue', tag: 'bg-bubbe-blue' },
+  { border: 'border-bubbe-red', tag: 'bg-bubbe-red' },
+  { border: 'border-bubbe-yellow', tag: 'bg-bubbe-yellow text-bubbe-dark' },
+  { border: 'border-bubbe-orange', tag: 'bg-bubbe-orange' },
+  { border: 'border-bubbe-green', tag: 'bg-bubbe-green' },
+  { border: 'border-bubbe-navy', tag: 'bg-bubbe-navy' },
+];
+
 export default function RecipeCard({
   recipe,
   isFavorite,
@@ -23,9 +33,11 @@ export default function RecipeCard({
     onFavoriteToggle();
   };
 
+  const colorScheme = accentColors[recipe.id % accentColors.length];
+
   return (
     <article
-      className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl active:scale-[0.98]"
+      className={`group relative cursor-pointer overflow-hidden rounded-2xl bg-white border-2 ${colorScheme.border} comic-shadow transition-all duration-200 hover:-translate-y-1 hover:translate-x-[-2px] active:translate-y-0 active:translate-x-0`}
       style={{
         animation: `fadeIn 0.5s ease-out ${animationDelay}ms both`,
       }}
@@ -40,28 +52,28 @@ export default function RecipeCard({
       }}
       aria-label={`View ${recipe.title} recipe`}
     >
-      {/* Rainbow top border */}
-      <div className="h-1.5 bg-gradient-to-r from-warm-pink via-lavender to-sage-green" />
+      {/* Blue top bar */}
+      <div className="h-2 bg-bubbe-blue" />
 
       {/* Card content */}
-      <div className="p-4">
+      <div className="p-4 md:p-5">
         {/* Emoji and favorite button row */}
         <div className="flex items-start justify-between">
-          <span className="text-5xl" role="img" aria-label={recipe.title}>
+          <span className="text-5xl md:text-6xl" role="img" aria-label={recipe.title}>
             {recipe.emoji}
           </span>
           <button
             onClick={handleFavoriteClick}
-            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all ${
+            className={`flex h-11 w-11 items-center justify-center rounded-full border-2 transition-all active:scale-95 ${
               isFavorite
-                ? 'bg-warm-pink text-white'
-                : 'bg-cream text-warm-pink hover:bg-warm-pink/20'
+                ? 'bg-bubbe-red border-bubbe-red text-white'
+                : 'bg-white border-bubbe-gray/30 text-bubbe-red hover:border-bubbe-red'
             }`}
             aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             aria-pressed={isFavorite}
           >
             <Heart
-              className={`h-5 w-5 transition-transform ${
+              className={`h-6 w-6 transition-transform ${
                 isFavorite ? 'fill-current animate-heart-pop' : ''
               }`}
             />
@@ -69,28 +81,22 @@ export default function RecipeCard({
         </div>
 
         {/* Title */}
-        <h3
-          className="mt-3 text-xl text-chocolate"
-          style={{ fontFamily: "'Brush Script MT', cursive" }}
-        >
+        <h3 className="mt-3 text-xl md:text-2xl font-bold text-bubbe-dark font-display tracking-wide">
           {recipe.title}
         </h3>
 
         {/* Description */}
-        <p className="mt-2 line-clamp-2 font-serif text-sm text-chocolate/70">
+        <p className="mt-2 line-clamp-2 text-sm md:text-base text-bubbe-gray font-body">
           {recipe.description}
         </p>
 
         {/* Tag */}
-        <div className="mt-3">
-          <span className="inline-block rounded-full bg-gradient-to-r from-soft-peach to-lavender px-3 py-1 text-xs font-medium text-chocolate">
+        <div className="mt-4">
+          <span className={`inline-block rounded-full ${colorScheme.tag} px-4 py-1.5 text-xs md:text-sm font-bold text-white`}>
             {recipe.tag}
           </span>
         </div>
       </div>
-
-      {/* Decorative border */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-warm-pink/30 pointer-events-none" />
     </article>
   );
 }

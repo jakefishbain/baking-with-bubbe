@@ -21,8 +21,8 @@ export default function RecipeGrid({
   if (recipes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 px-8 text-center">
-        <span className="text-6xl mb-4">🍪</span>
-        <p className="font-serif text-lg text-chocolate/70 italic">
+        <span className="text-7xl mb-4 animate-float">🍪</span>
+        <p className="text-lg md:text-xl text-bubbe-gray font-body font-semibold">
           {emptyMessage}
         </p>
       </div>
@@ -30,7 +30,7 @@ export default function RecipeGrid({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 pb-24">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 px-4 md:px-6 lg:px-8 pb-24">
       {recipes.map((recipe, index) => (
         <RecipeCard
           key={recipe.id}
@@ -38,7 +38,7 @@ export default function RecipeGrid({
           isFavorite={favorites.includes(recipe.id)}
           onFavoriteToggle={() => onFavoriteToggle(recipe.id)}
           onClick={() => onRecipeClick(recipe.id)}
-          animationDelay={index * 100}
+          animationDelay={index * 80}
         />
       ))}
     </div>

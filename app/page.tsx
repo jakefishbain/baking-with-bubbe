@@ -20,14 +20,28 @@ export default function HomePage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('all');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedRecipeId, setSelectedRecipeId] = useState<number | null>(null);
   const { favorites, toggleFavorite, isFavorite, isLoaded } = useFavorites();
 
   // Get all unique categories
   const categories = useMemo(() => getAllTags(), []);
 
-  // Filter recipes based on search, category, and active tab
+  // Toggle a category selection
+  const handleCategoryToggle = (category: string) => {
+    setSelectedCategories(prev =>
+      prev.includes(category)
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  };
+
+  // Clear all category selections
+  const handleClearCategories = () => {
+    setSelectedCategories([]);
+  };
+
+  // Filter recipes based on search, categories, and active tab
   const filteredRecipes = useMemo(() => {
     let filtered = recipes;
 
@@ -36,9 +50,9 @@ export default function HomePage() {
       filtered = filtered.filter((recipe) => favorites.includes(recipe.id));
     }
 
-    // Filter by category
-    if (selectedCategory) {
-      filtered = filtered.filter((recipe) => recipe.tag === selectedCategory);
+    // Filter by categories (show recipes matching ANY selected category)
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter((recipe) => selectedCategories.includes(recipe.tag));
     }
 
     // Filter by search query
@@ -53,7 +67,7 @@ export default function HomePage() {
     }
 
     return filtered;
-  }, [searchQuery, selectedCategory, activeTab, favorites]);
+  }, [searchQuery, selectedCategories, activeTab, favorites]);
 
   const selectedRecipe = selectedRecipeId ? getRecipeById(selectedRecipeId) : null;
 
@@ -81,14 +95,14 @@ export default function HomePage() {
     if (activeTab === 'favorites' && favorites.length === 0) {
       return "No favorites yet! Start exploring Bubbe's recipes and tap the heart to save your favorites.";
     }
-    if (activeTab === 'favorites' && selectedCategory) {
-      return `No favorite ${selectedCategory.toLowerCase()} recipes yet!`;
+    if (activeTab === 'favorites' && selectedCategories.length > 0) {
+      return `No favorite recipes in selected categories yet!`;
     }
     if (searchQuery) {
       return `No recipes found for "${searchQuery}". Try a different search!`;
     }
-    if (selectedCategory) {
-      return `No ${selectedCategory.toLowerCase()} recipes found.`;
+    if (selectedCategories.length > 0) {
+      return `No recipes found in selected categories.`;
     }
     return "No recipes found.";
   };
@@ -105,8 +119,9 @@ export default function HomePage() {
 
       <CategoryFilter
         categories={categories}
-        selected={selectedCategory}
-        onSelect={setSelectedCategory}
+        selected={selectedCategories}
+        onToggle={handleCategoryToggle}
+        onClearAll={handleClearCategories}
       />
 
       <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
@@ -114,7 +129,7 @@ export default function HomePage() {
       {/* Show loading state while favorites are being loaded */}
       {!isLoaded ? (
         <div className="flex items-center justify-center py-16">
-          <div className="text-4xl animate-pulse">🍪</div>
+          <div className="text-5xl animate-float">🍪</div>
         </div>
       ) : (
         <RecipeGrid

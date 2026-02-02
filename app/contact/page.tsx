@@ -86,24 +86,21 @@ export default function ContactPage() {
     return (
       <main className="min-h-screen pb-20">
         <Header />
-        <div className="px-4 py-8">
-          <div className="mx-auto max-w-sm">
-            <div className="rounded-2xl border-2 border-warm-pink bg-white p-8 text-center shadow-lg animate-fade-in">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-sage-green/30">
-                <CheckCircle className="h-8 w-8 text-sage-green" />
+        <div className="px-4 md:px-6 lg:px-8 py-8">
+          <div className="mx-auto max-w-md">
+            <div className="rounded-2xl border-2 border-bubbe-green bg-white p-8 text-center comic-shadow animate-bounce-in">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-bubbe-green/15">
+                <CheckCircle className="h-8 w-8 text-bubbe-green" />
               </div>
-              <h2
-                className="text-2xl text-chocolate"
-                style={{ fontFamily: "'Brush Script MT', cursive" }}
-              >
+              <h2 className="text-2xl md:text-3xl text-bubbe-dark font-display tracking-wide">
                 Message Sent!
               </h2>
-              <p className="mt-3 font-serif text-chocolate/70">
-                Thank you for reaching out! Bubbe will get back to you soon. 💝
+              <p className="mt-3 font-body text-bubbe-gray text-base md:text-lg">
+                Thank you for reaching out! Bubbe will get back to you soon.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="mt-6 rounded-full bg-gradient-to-r from-warm-pink to-soft-peach px-6 py-3 font-serif text-chocolate transition-transform active:scale-95"
+                className="mt-6 rounded-full bg-bubbe-blue px-6 py-3 font-bold text-white transition-all hover:bg-bubbe-blue-dark active:scale-95"
               >
                 Send Another Message
               </button>
@@ -118,29 +115,26 @@ export default function ContactPage() {
     <main className="min-h-screen pb-24">
       <Header />
 
-      <div className="px-4 py-6">
+      <div className="px-4 md:px-6 lg:px-8 py-6 max-w-2xl mx-auto">
         {/* Page title */}
         <div className="mb-6 text-center">
-          <h1
-            className="text-2xl text-chocolate"
-            style={{ fontFamily: "'Brush Script MT', cursive" }}
-          >
+          <h1 className="text-3xl md:text-4xl text-bubbe-dark font-display tracking-wide">
             Get In Touch
           </h1>
-          <p className="mt-1 font-serif text-sm text-chocolate/60">
+          <p className="mt-2 font-body text-base md:text-lg text-bubbe-gray">
             Bubbe loves hearing from you!
           </p>
         </div>
 
         {/* Contact info card */}
-        <div className="mb-6 rounded-2xl border-2 border-warm-pink bg-white p-5 shadow-lg">
+        <div className="mb-6 rounded-2xl border-2 border-bubbe-blue bg-white p-5 md:p-6 comic-shadow">
           <div className="space-y-4">
             <a
               href="mailto:bubbe@bakingwithbubbe.com"
-              className="flex items-center gap-3 font-serif text-chocolate transition-colors hover:text-cinnamon"
+              className="flex items-center gap-3 font-body font-semibold text-bubbe-dark transition-colors hover:text-bubbe-blue"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-warm-pink/30">
-                <Mail className="h-5 w-5 text-cinnamon" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bubbe-blue/15">
+                <Mail className="h-6 w-6 text-bubbe-blue" />
               </div>
               <span>bubbe@bakingwithbubbe.com</span>
             </a>
@@ -148,12 +142,12 @@ export default function ContactPage() {
               href="https://instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 font-serif text-chocolate transition-colors hover:text-cinnamon"
+              className="flex items-center gap-3 font-body font-semibold text-bubbe-dark transition-colors hover:text-bubbe-orange"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lavender/50">
-                <Instagram className="h-5 w-5 text-cinnamon" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bubbe-orange/15">
+                <Instagram className="h-6 w-6 text-bubbe-orange" />
               </div>
-              <span>@-</span>
+              <span>@bakingwithbubbe</span>
             </a>
           </div>
         </div>
@@ -161,12 +155,9 @@ export default function ContactPage() {
         {/* Contact form */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border-2 border-warm-pink bg-white p-5 shadow-lg"
+          className="rounded-2xl border-2 border-bubbe-yellow bg-white p-5 md:p-6 comic-shadow"
         >
-          <h2
-            className="mb-4 text-xl text-chocolate"
-            style={{ fontFamily: "'Brush Script MT', cursive" }}
-          >
+          <h2 className="mb-5 text-xl md:text-2xl text-bubbe-dark font-display tracking-wide">
             Send a Message
           </h2>
 
@@ -174,9 +165,9 @@ export default function ContactPage() {
           <div className="mb-4">
             <label
               htmlFor="name"
-              className="mb-1 block font-serif text-sm text-chocolate"
+              className="mb-2 block font-body font-bold text-sm text-bubbe-dark"
             >
-              Name <span className="text-warm-pink">*</span>
+              Name <span className="text-bubbe-red">*</span>
             </label>
             <input
               type="text"
@@ -184,14 +175,14 @@ export default function ContactPage() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full rounded-xl border-2 bg-cream px-4 py-3 font-serif text-chocolate placeholder:text-chocolate/40 focus:outline-none focus:ring-2 focus:ring-cinnamon/20 transition-all ${
-                errors.name ? 'border-red-400' : 'border-warm-pink/50 focus:border-cinnamon'
+              className={`w-full rounded-xl border-2 bg-bubbe-cream px-4 py-3 font-body text-bubbe-dark placeholder:text-bubbe-gray/50 focus:outline-none focus:ring-4 focus:ring-bubbe-blue/20 transition-all ${
+                errors.name ? 'border-bubbe-red' : 'border-bubbe-blue/30 focus:border-bubbe-blue'
               }`}
               placeholder="Your name"
               aria-describedby={errors.name ? 'name-error' : undefined}
             />
             {errors.name && (
-              <p id="name-error" className="mt-1 text-sm text-red-500">
+              <p id="name-error" className="mt-1 text-sm text-bubbe-red font-body">
                 {errors.name}
               </p>
             )}
@@ -201,9 +192,9 @@ export default function ContactPage() {
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="mb-1 block font-serif text-sm text-chocolate"
+              className="mb-2 block font-body font-bold text-sm text-bubbe-dark"
             >
-              Email <span className="text-warm-pink">*</span>
+              Email <span className="text-bubbe-red">*</span>
             </label>
             <input
               type="email"
@@ -211,14 +202,14 @@ export default function ContactPage() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full rounded-xl border-2 bg-cream px-4 py-3 font-serif text-chocolate placeholder:text-chocolate/40 focus:outline-none focus:ring-2 focus:ring-cinnamon/20 transition-all ${
-                errors.email ? 'border-red-400' : 'border-warm-pink/50 focus:border-cinnamon'
+              className={`w-full rounded-xl border-2 bg-bubbe-cream px-4 py-3 font-body text-bubbe-dark placeholder:text-bubbe-gray/50 focus:outline-none focus:ring-4 focus:ring-bubbe-blue/20 transition-all ${
+                errors.email ? 'border-bubbe-red' : 'border-bubbe-blue/30 focus:border-bubbe-blue'
               }`}
               placeholder="your@email.com"
               aria-describedby={errors.email ? 'email-error' : undefined}
             />
             {errors.email && (
-              <p id="email-error" className="mt-1 text-sm text-red-500">
+              <p id="email-error" className="mt-1 text-sm text-bubbe-red font-body">
                 {errors.email}
               </p>
             )}
@@ -228,9 +219,9 @@ export default function ContactPage() {
           <div className="mb-4">
             <label
               htmlFor="subject"
-              className="mb-1 block font-serif text-sm text-chocolate"
+              className="mb-2 block font-body font-bold text-sm text-bubbe-dark"
             >
-              Subject <span className="text-chocolate/40">(optional)</span>
+              Subject <span className="text-bubbe-gray/50">(optional)</span>
             </label>
             <input
               type="text"
@@ -238,7 +229,7 @@ export default function ContactPage() {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full rounded-xl border-2 border-warm-pink/50 bg-cream px-4 py-3 font-serif text-chocolate placeholder:text-chocolate/40 focus:border-cinnamon focus:outline-none focus:ring-2 focus:ring-cinnamon/20 transition-all"
+              className="w-full rounded-xl border-2 border-bubbe-blue/30 bg-bubbe-cream px-4 py-3 font-body text-bubbe-dark placeholder:text-bubbe-gray/50 focus:border-bubbe-blue focus:outline-none focus:ring-4 focus:ring-bubbe-blue/20 transition-all"
               placeholder="What's this about?"
             />
           </div>
@@ -247,9 +238,9 @@ export default function ContactPage() {
           <div className="mb-6">
             <label
               htmlFor="message"
-              className="mb-1 block font-serif text-sm text-chocolate"
+              className="mb-2 block font-body font-bold text-sm text-bubbe-dark"
             >
-              Message <span className="text-warm-pink">*</span>
+              Message <span className="text-bubbe-red">*</span>
             </label>
             <textarea
               id="message"
@@ -257,14 +248,14 @@ export default function ContactPage() {
               value={formData.message}
               onChange={handleChange}
               rows={5}
-              className={`w-full resize-none rounded-xl border-2 bg-cream px-4 py-3 font-serif text-chocolate placeholder:text-chocolate/40 focus:outline-none focus:ring-2 focus:ring-cinnamon/20 transition-all ${
-                errors.message ? 'border-red-400' : 'border-warm-pink/50 focus:border-cinnamon'
+              className={`w-full resize-none rounded-xl border-2 bg-bubbe-cream px-4 py-3 font-body text-bubbe-dark placeholder:text-bubbe-gray/50 focus:outline-none focus:ring-4 focus:ring-bubbe-blue/20 transition-all ${
+                errors.message ? 'border-bubbe-red' : 'border-bubbe-blue/30 focus:border-bubbe-blue'
               }`}
               placeholder="Tell Bubbe what's on your mind..."
               aria-describedby={errors.message ? 'message-error' : undefined}
             />
             {errors.message && (
-              <p id="message-error" className="mt-1 text-sm text-red-500">
+              <p id="message-error" className="mt-1 text-sm text-bubbe-red font-body">
                 {errors.message}
               </p>
             )}
@@ -274,7 +265,7 @@ export default function ContactPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-warm-pink to-soft-peach py-4 font-serif text-chocolate shadow-md transition-all hover:shadow-lg active:scale-[0.98] disabled:opacity-50"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-bubbe-blue py-4 font-bold text-white transition-all hover:bg-bubbe-blue-dark active:scale-95 disabled:opacity-50"
           >
             {isSubmitting ? (
               <>
@@ -291,8 +282,8 @@ export default function ContactPage() {
         </form>
 
         {/* Decorative footer */}
-        <p className="mt-6 text-center font-serif text-sm text-chocolate/50 italic">
-          Made with love by Bubbe 💝
+        <p className="mt-8 text-center font-body text-sm text-bubbe-gray">
+          Made with love by Bubbe
         </p>
       </div>
     </main>

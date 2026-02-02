@@ -1,12 +1,15 @@
 'use client';
 
+import { Check } from 'lucide-react';
+
 interface CategoryFilterProps {
   categories: string[];
-  selected: string | null;
-  onSelect: (category: string | null) => void;
+  selected: string[];
+  onToggle: (category: string) => void;
+  onClearAll: () => void;
 }
 
-// Map categories to emojis for visual appeal
+// Map categories to emojis
 const categoryEmojis: Record<string, string> = {
   Cookies: '🍪',
   Bars: '🍫',
@@ -24,38 +27,48 @@ const categoryEmojis: Record<string, string> = {
 export default function CategoryFilter({
   categories,
   selected,
-  onSelect,
+  onToggle,
+  onClearAll,
 }: CategoryFilterProps) {
+  const hasSelection = selected.length > 0;
+
   return (
-    <div className="px-4 py-2">
-      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-        {/* All button */}
+    <div className="px-4 md:px-6 lg:px-8 py-2">
+      <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide md:flex-wrap md:overflow-visible">
+        {/* All / Clear button */}
         <button
-          onClick={() => onSelect(null)}
-          className={`flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all ${
-            selected === null
-              ? 'bg-warm-pink text-white shadow-md'
-              : 'bg-warm-pink/20 text-chocolate hover:bg-warm-pink/30'
+          onClick={onClearAll}
+          className={`flex-shrink-0 rounded-full px-5 py-2.5 text-sm md:text-base font-bold border-2 transition-all active:scale-95 ${
+            !hasSelection
+              ? 'bg-bubbe-blue border-bubbe-blue text-white'
+              : 'bg-white text-bubbe-blue border-bubbe-blue hover:bg-bubbe-blue/10'
           }`}
         >
-          All
+          {hasSelection ? 'Clear' : 'All'}
         </button>
 
         {/* Category buttons */}
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => onSelect(category)}
-            className={`flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all flex items-center gap-1.5 ${
-              selected === category
-                ? 'bg-warm-pink text-white shadow-md'
-                : 'bg-warm-pink/20 text-chocolate hover:bg-warm-pink/30'
-            }`}
-          >
-            <span aria-hidden="true">{categoryEmojis[category] || '📖'}</span>
-            {category}
-          </button>
-        ))}
+        {categories.map((category) => {
+          const emoji = categoryEmojis[category] || '📖';
+          const isSelected = selected.includes(category);
+
+          return (
+            <button
+              key={category}
+              onClick={() => onToggle(category)}
+              className={`flex-shrink-0 rounded-full px-4 py-2.5 text-sm md:text-base font-bold border-2 transition-all flex items-center gap-2 active:scale-95 ${
+                isSelected
+                  ? 'bg-bubbe-blue border-bubbe-blue text-white'
+                  : 'bg-white text-bubbe-dark border-bubbe-gray/30 hover:border-bubbe-blue/50'
+              }`}
+              aria-pressed={isSelected}
+            >
+              {isSelected && <Check className="w-4 h-4" strokeWidth={3} />}
+              <span aria-hidden="true">{emoji}</span>
+              {category}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

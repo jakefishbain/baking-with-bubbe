@@ -4,7 +4,7 @@ import BottomNav from '@/components/BottomNav';
 
 export const metadata: Metadata = {
   title: 'Baking With Bubbe',
-  description: "A whimsical, storybook-style recipe app showcasing Bubbe's secret baking recipes",
+  description: "A fun, colorful recipe app showcasing Bubbe's secret baking recipes",
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -22,7 +22,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: 'cover',
-  themeColor: '#FFB4B4',
+  themeColor: '#4A90D9',
 };
 
 export default function RootLayout({
@@ -33,8 +33,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
-        {/* Main container - mobile-first, centered on desktop */}
-        <div className="mx-auto max-w-mobile min-h-screen bg-gradient-to-b from-cream to-soft-peach shadow-2xl">
+        {/* Main container - responsive from mobile to desktop */}
+        <div className="mx-auto min-h-screen max-w-desktop">
           {children}
           <BottomNav />
         </div>

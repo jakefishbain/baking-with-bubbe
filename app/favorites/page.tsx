@@ -54,7 +54,7 @@ export default function FavoritesPage() {
 
   const getEmptyMessage = () => {
     if (favorites.length === 0) {
-      return "No favorites yet! Start exploring Bubbe's recipes and tap the heart to save your favorites. 💝";
+      return "No favorites yet! Start exploring Bubbe's recipes and tap the heart to save your favorites.";
     }
     if (searchQuery) {
       return `No favorite recipes found for "${searchQuery}".`;
@@ -67,14 +67,11 @@ export default function FavoritesPage() {
       <Header />
 
       {/* Page title */}
-      <div className="px-4 pt-4 pb-2">
-        <h1
-          className="text-2xl text-chocolate text-center"
-          style={{ fontFamily: "'Brush Script MT', cursive" }}
-        >
-          My Favorite Recipes 💝
+      <div className="px-4 md:px-6 lg:px-8 pt-6 pb-2">
+        <h1 className="text-3xl md:text-4xl text-bubbe-dark text-center font-display tracking-wide">
+          My Favorite Recipes
         </h1>
-        <p className="text-center font-serif text-sm text-chocolate/60 mt-1">
+        <p className="text-center font-body text-base md:text-lg text-bubbe-gray mt-2">
           {favorites.length} {favorites.length === 1 ? 'recipe' : 'recipes'} saved
         </p>
       </div>
@@ -90,7 +87,7 @@ export default function FavoritesPage() {
       {/* Show loading state while favorites are being loaded */}
       {!isLoaded ? (
         <div className="flex items-center justify-center py-16">
-          <div className="text-4xl animate-pulse">💝</div>
+          <div className="text-5xl animate-float">❤️</div>
         </div>
       ) : (
         <RecipeGrid
