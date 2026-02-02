@@ -11,9 +11,9 @@ interface HeaderProps {
 export default function Header({ showBackButton, onBack, rightElement }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 w-full">
-      {/* Main header - bold blue */}
-      <div className="relative overflow-hidden bg-bubbe-blue">
-        <div className="flex items-center justify-between px-3 py-2 md:px-6 md:py-2.5">
+      {/* Main header - bold blue with rounded bottom */}
+      <div className="relative overflow-hidden bg-bubbe-blue rounded-b-3xl shadow-lg">
+        <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-3">
           {/* Left side - Back button or spacer */}
           <div className="w-8 md:w-10">
             {showBackButton && (
@@ -55,8 +55,8 @@ export default function Header({ showBackButton, onBack, rightElement }: HeaderP
           </div>
         </div>
 
-        {/* Yellow accent bar */}
-        <div className="h-1 bg-bubbe-yellow" />
+        {/* Yellow accent bar - also rounded */}
+        <div className="h-1.5 bg-bubbe-yellow rounded-b-3xl" />
       </div>
     </header>
   );

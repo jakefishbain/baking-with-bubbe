@@ -60,6 +60,7 @@ const config: Config = {
         'bounce-in': 'bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         'wiggle': 'wiggle 0.5s ease-in-out',
         'float': 'float 3s ease-in-out infinite',
+        'scale-in': 'scaleIn 0.25s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -93,6 +94,10 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'scale(0.9)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
       },
     },
