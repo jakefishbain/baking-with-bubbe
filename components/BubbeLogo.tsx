@@ -74,10 +74,6 @@ export default function BubbeLogo({ size = 60, className = '' }: BubbeLogoProps)
       <path d="M38 66 Q50 78 62 66" fill="#FFFFFF" stroke="#E8998D" strokeWidth="2" strokeLinecap="round" />
       {/* Upper lip line */}
       <path d="M38 66 Q50 62 62 66" fill="none" stroke="#E8998D" strokeWidth="1.5" strokeLinecap="round" />
-      {/* Tooth lines */}
-      <line x1="46" y1="66" x2="46" y2="71" stroke="#F3F4F6" strokeWidth="0.5" />
-      <line x1="50" y1="66" x2="50" y2="72" stroke="#F3F4F6" strokeWidth="0.5" />
-      <line x1="54" y1="66" x2="54" y2="71" stroke="#F3F4F6" strokeWidth="0.5" />
 
       {/* Cookie being held */}
       <circle cx="50" cy="90" r="10" fill="#D97706" />
