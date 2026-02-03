@@ -1,25 +1,16 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import SearchBar from '@/components/SearchBar';
 import CategoryFilter from '@/components/CategoryFilter';
-import TabNav from '@/components/TabNav';
 import RecipeGrid from '@/components/RecipeGrid';
 import RecipeDetail from '@/components/RecipeDetail';
 import { recipes, getRecipeById, getAllTags } from '@/lib/recipes';
 import { useFavorites } from '@/lib/hooks/useFavorites';
 
-const tabs = [
-  { id: 'all', label: 'All Recipes' },
-  { id: 'favorites', label: 'Favorites' },
-];
-
 export default function HomePage() {
-  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState('all');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedRecipeId, setSelectedRecipeId] = useState<number | null>(null);
   const { favorites, toggleFavorite, isFavorite, isLoaded } = useFavorites();
@@ -41,14 +32,9 @@ export default function HomePage() {
     setSelectedCategories([]);
   };
 
-  // Filter recipes based on search, categories, and active tab
+  // Filter recipes based on search and categories
   const filteredRecipes = useMemo(() => {
     let filtered = recipes;
-
-    // Filter by tab
-    if (activeTab === 'favorites') {
-      filtered = filtered.filter((recipe) => favorites.includes(recipe.id));
-    }
 
     // Filter by categories (show recipes matching ANY selected category)
     if (selectedCategories.length > 0) {
@@ -67,7 +53,7 @@ export default function HomePage() {
     }
 
     return filtered;
-  }, [searchQuery, selectedCategories, activeTab, favorites]);
+  }, [searchQuery, selectedCategories]);
 
   const selectedRecipe = selectedRecipeId ? getRecipeById(selectedRecipeId) : null;
 
@@ -92,12 +78,6 @@ export default function HomePage() {
   };
 
   const getEmptyMessage = () => {
-    if (activeTab === 'favorites' && favorites.length === 0) {
-      return "No favorites yet! Start exploring Bubbe's recipes and tap the heart to save your favorites.";
-    }
-    if (activeTab === 'favorites' && selectedCategories.length > 0) {
-      return `No favorite recipes in selected categories yet!`;
-    }
     if (searchQuery) {
       return `No recipes found for "${searchQuery}". Try a different search!`;
     }
@@ -123,8 +103,6 @@ export default function HomePage() {
         onToggle={handleCategoryToggle}
         onClearAll={handleClearCategories}
       />
-
-      <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Show loading state while favorites are being loaded */}
       {!isLoaded ? (
