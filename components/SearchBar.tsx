@@ -14,7 +14,7 @@ export default function SearchBar({
   placeholder = "Search Bubbe's recipes...",
 }: SearchBarProps) {
   return (
-    <div className="sticky top-[57px] md:top-[65px] z-30 bg-bubbe-cream px-3 md:px-4 lg:px-6 py-2 md:py-3">
+    <div className="sticky top-[65px] md:top-[73px] z-30 bg-bubbe-cream px-3 md:px-4 lg:px-6 py-2 md:py-3">
       <div className="relative flex items-center">
         <Search
           className="absolute left-3 h-4 w-4 md:h-5 md:w-5 text-bubbe-blue"

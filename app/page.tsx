@@ -108,7 +108,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen pb-16">
+    <main className="min-h-screen pb-20">
       <Header />
 
       <SearchBar
