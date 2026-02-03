@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Heart } from 'lucide-react';
+import { BookOpen, Heart, FileText } from 'lucide-react';
 
 const navItems = [
   {
@@ -18,6 +18,13 @@ const navItems = [
     icon: Heart,
     activeColor: 'text-bubbe-red',
     activeBg: 'bg-bubbe-red/15',
+  },
+  {
+    href: '/bubbes-book',
+    label: "Bubbe's Book",
+    icon: FileText,
+    activeColor: 'text-bubbe-orange',
+    activeBg: 'bg-bubbe-orange/15',
   },
 ];
 
